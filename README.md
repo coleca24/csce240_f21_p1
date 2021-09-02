@@ -15,12 +15,38 @@ The starting users for the system are in the data/ folder in a file called  `use
 ## Commit #1 functions:
 These are in order of how I would suggest to complete them. These 6 will be the ones tested for commit #1 (5 points total).
 
-1. `bool readUsers(string, string data[ROWS][COLS]);`
-3. `void printUsers(const string data[ROWS][COLS]);`
-4. char displayOptions();
-5. bool validateOption(char);
-6. void executeOption(char, const string data[ROWS][COLS], string);
-7. int searchForUser(string, const string data[ROWS][COLS]);
+- `bool readUsers(string fh, string data[ROWS][COLS]);`
+  -   Reads in the user from the flat csv file and stores it in the data array.
+  -   `fh` is the name of the file to be read. This will be sent in by the main. 
+  -   `data` is a 5x4 array that you will populate with the data from the `user_info.csv` file. 
+-  `void printUsers(const string data[ROWS][COLS]);`
+  -  Prints out the contents of the 2d array to standard out
+  -  This function will be useful as a debugging step. 
+  -  `data` is a 5x4 array that has the user information 
+- `bool validateOption(char option);`
+  - This function will validate whether a valid input was given to your CLI. 
+  - The valid inputs are: E, e, P, p, S, s, F, f, A, a, D, d
+  - `option` is the character that should be checked for being a valid input
+  - returns bool - true if `option` is a valid input, false otherwise.
+- `char displayOptions();`
+  -  This function will display the command line options that the user can input into your system. 
+  -  It should include a call to `cin` to get the choice from the user and return this choice if it is a valid option (Hint: you will use the `validateOption(char)` to check).
+- `void executeOption(char option, const string data[ROWS][COLS], string fn);`
+  - Based on the `option` that is sent in, the correct function should be called. Note that for this first commit, you will not have all of the functions implemented, so it is fine for you to just put a cout statement for that option as a placeholder for now. 
+  - Options: 
+    - E/e Ends the program - you will actually not have to do anything for this option in this function (note the flow in the main function in main.cpp)
+    - P/p Calls printUsers()
+    - S/s Calls searchForUser() - You will need to first read in a name from the user to pass to this function. You should also use the index that this function returns to print out the user infomation that was found (if one was found - see output example). 
+    - F/f Calls findAllUsers() - You will need to read in a job title from the user to pass to this function. You should also print out the number of users that were found here (see output example). 
+    - A/a Calls the addUser() function - You will need to read in a name and a job title from the user to send to this function. Before calling the function, you should first check to see if there is an empty spot (a row populated by "NULL"s). If there is not, then you should tell the user that the database is full (see example output). You should also not allow the user to add a duplicate entry. 
+    - D/d Calls the deleteUser() function - You will need to read in a name from the user to send to this function. If the user is deleted, then the user should be told they were successfully deleted. If they were not found then the user should be told that there was no user found. 
+  - `option` is the action that the user chose in the `displayOptions()` function (note in the main.cpp how this flows). 
+  - `data` is a 5x4 array that has the user information 
+  -  `fh` is the name of the file. Some of the functions that you will call in this function will need the file name. 
+- `int searchForUser(string name, const string data[ROWS][COLS]);`
+  -  Allows the user to search the data array by name. If there is a match then the index of the match (the row number) is returned. If there is no match then -1 is returned. 
+  -  `name` is the name to search for in the `data` array. 
+  -  `data` is a 5x4 array that has the user information
 
 ## Commit #2 functions:
 int findAllUsers(string, const string data[ROWS][COLS]); 
