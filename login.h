@@ -18,18 +18,19 @@ const int ROWS = 5;
 
 // TODO(commit 1): Commit #1 functions
 void printUsers(const string data[ROWS][COLS]);
-bool readUsers(string, string data[ROWS][COLS]);
+bool readUsers(string fh, string data[ROWS][COLS]);
 char displayOptions();
-bool validateOption(char);
-void executeOption(char, const string data[ROWS][COLS], string);
-int searchForUser(string, const string data[ROWS][COLS]);
+bool validateOption(char option);
+void executeOption(char option, const string data[ROWS][COLS], string);
+int searchForUser(string name, const string data[ROWS][COLS]);
 
 // TODO(commit 2): Commit #2 functions
-int findAllUsers(string, const string data[ROWS][COLS]);  // Based on job title
-bool deleteUser(string, string data[ROWS][COLS], string);
+int findAllUsers(string title, const string data[ROWS][COLS]);
+bool deleteUser(string name, string data[ROWS][COLS], string fh);
 string generatePassword();
 string generateEmail(string name);
 int checkEmpty(const string data[ROWS][COLS]);
-void addUser(int, string, string, string data[ROWS][COLS], string);
+void addUser(int index, string name, string title,
+             string data[ROWS][COLS], string fh);
 
 #endif  // LOGIN_H_

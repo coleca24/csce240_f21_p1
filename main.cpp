@@ -294,7 +294,7 @@ int main(int argc, char** argv) {
      init(data);
      std::string fn = argv[1];
      bool success = readUsers(fn, data);
-     // printUsers(data);
+     printUsers(data);
      if (success) {
           char option;
           do {
