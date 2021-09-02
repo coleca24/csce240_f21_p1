@@ -1,0 +1,28 @@
+name: Unit Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    
+    - uses: actions/checkout@v2
+    
+    - name: Configure
+      run: |
+        cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Debug
+    - name: Build
+      run: |
+        cmake --build build --config Debug
+    - name: Test
+      run: |
+        cp -r test data ./build
+        cd build
+        ./login < ./test/commands.txt
