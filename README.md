@@ -191,7 +191,7 @@ All platforms:
 ```
 
 ## Grading
-### Commit #1 Due 9/9/21 at Midnight (5 pts)
+### Commit #1 Due 9/13/21 at Midnight (5 pts)
 For commit #1 you need to be passing all of the tests in the commit1 test module (6 in total)
 
 1. Commit1.readUsersOpensCorrectFile - 0.5 pt
@@ -203,7 +203,7 @@ For commit #1 you need to be passing all of the tests in the commit1 test module
 
 For more info about these test cases, please see https://github.com/coleca24/csce240_f21_p1/blob/main/Tests.md. 
 
-### Commit #2 Due 9/16/21 at Midnight (15 pts)
+### Commit #2 Due 9/20/21 at Midnight (15 pts)
 For commit #2 you need to be passing all of the tests in the commit1 test module (11 in total)
 
 1. Commit2.findAllUsersCorrectExists - 1 pt
