@@ -1,19 +1,26 @@
 # Project 1 CSCE 240 Fall 2021 (20 points)
 In this project, you will be writing a basic login system. You will create a basic command line interface (CLI) as well as implement the ability for the user to add, delete, search and more. The data for the system will be stored in a flat file (in this case a CSV file). 
 
-You will need to implement the following functions (prototypes in login.h): 
+You will need to implement 12 functions. The prototypes for these will be in the login.h file. **You will only need to modify the login.h file, DO NOT MODIFY THE `main.cpp` file!**
+
+To simplify the prototypes for the functions, I have elected to keep both dimensions of the array as constant global variables. 
+```
+const int COLS = 4;
+const int ROWS = 5;
+```
+This means that your login system only has the capacity for 5 users at most. We are going to enforce that limit. 
+
+The starting users for the system are in the data/ folder in a file called  `user_info.csv`. You will find that in the file there are 4 attributes for each user: Name, Email, Password and Job Title. 
+
 ## Commit #1 functions:
-void printUsers(const string data[ROWS][COLS]);
+These are in order of how I would suggest to complete them. These 6 will be the ones tested for commit #1 (5 points total).
 
-bool readUsers(string, string data[ROWS][COLS]);
-
-char displayOptions();
-
-bool validateOption(char);
-
-void executeOption(char, const string data[ROWS][COLS], string);
-
-int searchForUser(string, const string data[ROWS][COLS]);
+1. `bool readUsers(string, string data[ROWS][COLS]);`
+3. `void printUsers(const string data[ROWS][COLS]);`
+4. char displayOptions();
+5. bool validateOption(char);
+6. void executeOption(char, const string data[ROWS][COLS], string);
+7. int searchForUser(string, const string data[ROWS][COLS]);
 
 ## Commit #2 functions:
 int findAllUsers(string, const string data[ROWS][COLS]); 
