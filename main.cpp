@@ -286,13 +286,9 @@ TEST(Commit2, addUserFileCorrect) {
 void init(string[ROWS][COLS]);
 
 int main(int argc, char** argv) {
-     if (argc != 2) {
-          std::cout << "Usage: ./login data/name_of_csvfile.csv\n";
-          exit(1);
-     }
      std::string data[ROWS][COLS];
      init(data);
-     std::string fn = argv[1];
+     std::string fn = "./data/user_info.csv";
      bool success = readUsers(fn, data);
      printUsers(data);
      if (success) {
