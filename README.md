@@ -1,7 +1,7 @@
 # Project 1 CSCE 240 Fall 2021 (20 points)
 In this project, you will be writing a basic login system. You will create a basic command line interface (CLI) as well as implement the ability for the user to add, delete, search and more. The data for the system will be stored in a flat file (in this case a CSV file). 
 
-You will need to implement 12 functions. The prototypes for these will be in the login.h file. **You will only need to modify the login.h file, DO NOT MODIFY THE `main.cpp` file!**
+You will need to implement 12 functions. The prototypes for these will be in the login.h file. **You will only need to modify the login.h file, DO NOT MODIFY THE `main.cpp` file or any of the files in the ./test folder**
 
 To simplify the prototypes for the functions, I have elected to keep both dimensions of the array as constant global variables. 
 ```
@@ -10,9 +10,35 @@ const int ROWS = 5;
 ```
 This means that your login system only has the capacity for 5 users at most. We are going to enforce that limit. 
 
-The starting users for the system are in the data/ folder in a file called  `user_info.csv`. You will find that in the file there are 4 attributes for each user: Name, Email, Password and Job Title. 
+The starting users for the system are in the data/ folder in a file called  `user_info.csv`.  
 
-## Commit #1 functions:
+## Some comments about `user_info.csv`
+### Format
+You will find that in the file there are 4 attributes for each user: Name, Email, Password and Job Title.
+
+This is how your file should start.
+```
+Earl Jones,EarlJones@email.com,7Rfkqyuq,Manager
+Kandy McGill,KandyMcGill@email.com,bYeP82i6,Engineer
+Hank Stark,HankStark@email.com,t277Bqyi,Manager
+Bob Baker,BobBaker@email.com,yidHvr81,Engineer
+Tariq Thompson,TariqThompson@email.com,hB23uiyu,CEO
+```
+- Col 0 = Name
+- Col 1 = Email
+- Col 2 = Password
+- Col 3 = Job Title
+
+Also notice, that there are **no spaces** before or after a comma. You will want to keep it consistant like this if you want to pass all the tests! 
+
+### Getting back to the original
+As you are testing, you will probably edit the file (for instance when you are testing the delete and the add functions described below). If you ever want to get back to the original to test, issue the following command inside the repo's folder: 
+```
+cp ./data/user_info_back.csv ./data/user_info.csv
+```
+If you really mess it up, then let me know and I can push you a new file to start with. 
+
+## Commit #1 (Due 9/13/21 at Midnight) Functions to Complete:
 These are in order of how I would suggest to complete them. These 6 will be the ones tested for commit #1 (5 points total).
 
 - `bool readUsers(string fh, string data[ROWS][COLS]);`
@@ -48,18 +74,125 @@ These are in order of how I would suggest to complete them. These 6 will be the 
   -  `name` is the name to search for in the `data` array. 
   -  `data` is a 5x4 array that has the user information
 
-## Commit #2 functions:
-int findAllUsers(string, const string data[ROWS][COLS]); 
+## Commit #2 (Due 9/20/21 by Midnight) Functions to complete:
+These are in order of how I would suggest to complete them. These 6 will be the ones tested for commit #2 (15 points total).
+- `int findAllUsers(string title, const string data[ROWS][COLS]);` 
+  - This function should allow the user to find the number of users that have a certain job title in the data. 
+  -  `title` is the job title to search for in the `data` array (this is always in column 3). 
+  -  `data` is a 5x4 array that has the user information
+  -  returns an int - count of matches for a given string `title`
+- `bool deleteUser(string name, string data[ROWS][COLS], string);`
+  - Allows the user to delete a user from the system given a `name`. If the `name` does not exist then this function should return false. If the `name` does exist then it should replace all values of the row in which `name` was found with "NULL". It should also write the changes back to the `user_info.csv` file in the exact format as it was when you started. 
+  - `name` is the name to search for in the `data` array and then delete if it exisits. 
+  -  `data` is a 5x4 array that has the user information
+  -  returns an bool - false if name was not found, true if it was found and deleted.
+Ex. of deleteUser(). Imagine the file starts like this:
+```
+Earl Jones,EarlJones@email.com,7Rfkqyuq,Manager
+Kandy McGill,KandyMcGill@email.com,bYeP82i6,Engineer
+Hank Stark,HankStark@email.com,t277Bqyi,Manager
+Bob Baker,BobBaker@email.com,yidHvr81,Engineer
+Tariq Thompson,TariqThompson@email.com,hB23uiyu,CEO
+```
+And then the user performs a `deleteUser("Bob Baker", data, fh)`, then the new array and file should look like this:
+```
+Earl Jones,EarlJones@email.com,7Rfkqyuq,Manager
+Kandy McGill,KandyMcGill@email.com,bYeP82i6,Engineer
+Hank Stark,HankStark@email.com,t277Bqyi,Manager
+NULL,NULL,NULL,NULL
+Tariq Thompson,TariqThompson@email.com,hB23uiyu,CEO
+```
+Note that you can leave the empty row in the same spot as were it was when it was populated and do not need to worry about rearranging the entries (we will do this in a future assignment :) ). 
+ 
+- `string generatePassword();`
+  - Function that should generate a password for a user. This function will be called within the `addUser()` function. 
+  - Returns a string that has the following attributes:
+    - Exactly 8 characters
+    - Exactly 1 number (0-9) 
+    - Exactly 1 uppercase letter
+    - Exactly 6 lowercase letters
+  - General hints: 
+    - Remember that a char can be converted to an int that is it's ASCII dec value (https://en.cppreference.com/w/cpp/language/ascii). You can go the other way too. You can generate an int and change it to a char...
+    - Random numbers can be generated by either using the `rand()` function (https://www.cplusplus.com/reference/cstdlib/rand/) or the `<random>` library (https://www.cplusplus.com/reference/random/). Note that you can **ignore** the cpplint error that is returned for the `rand()` function. 
+- `string generateEmail(string name);`
+  - Function that will generate an email from a `name` that is passed in. This function will be called within the `addUser()` function. 
+  - Returns a string that contains the email. General Form: 
+    - Name = "Bob Watts"
+    - Email = "BobWatts@email.com"
+  - General hints:
+    - Take a look at the `string` functions `find()` (https://www.cplusplus.com/reference/string/string/find/) and `replace()` (https://www.cplusplus.com/reference/string/string/replace/). You may end up using both, or just 1 or the other. 
+- `int checkEmpty(const string data[ROWS][COLS]);`
+  - Function that will return the first row of the `data` array that is empty (a row of all "NULL" values). This function will be called **before** the `addUser()` function in the `executeOption()` function. The first parameter of the `addUser()` function will take in the `int` returned from this function.  
+  - If there are no empty rows, it returns -1
+- `void addUser(int index, string name, string title, string data[ROWS][COLS], string fh);`
+  - This function will allow the user to add a user to the database at a given `index`. This function will call the `generatePassword()` and `generateEmail()` functions to fill in those values. Note that this function should also write the changes back to the `user_info.csv` file. 
+  - `index` is the row in which to add the user. 
+  - `name` is the name of the new user to add. 
+  - `title` is the job title of the new user to add.
+  - `data` is a 5x4 array that has the user information
+  - `fh` is the name of the file to open and write to. 
 
-bool deleteUser(string, string data[ROWS][COLS], string);
+## Some comments about the `main()`
+### Flow
+The `main()` function looks like this, I have added comments below to describe each action it takes. 
+```
+int main(int argc, char** argv) {
+     // This looks to make sure that you gave your executable a file, if not, then you will get the error message. 
+     if (argc != 2) {
+          std::cout << "Usage: ./login data/name_of_csvfile.csv\n";
+          exit(1);
+     }
+     // Setting up and initializing the values of data to all "NULL"
+     std::string data[ROWS][COLS];
+     init(data);
+     // Getting the file name that was passed in with the executable (syntax described in "Running your code" section below)
+     std::string fn = argv[1];
+     // Call to your readUsers() function 
+     bool success = readUsers(fn, data);
+     // Call to your printUsers() function - gives you a chance to debug your readUsers() function. 
+     // This should have the data from user_info.csv, if there are any "NULL" then you did something wrong. 
+     printUsers(data);
+     // If the file was read in, start the main loop of asking the user for input. 
+     if (success) {
+          char option;
+          do {
+               // Call to your displayOptions() function 
+               option = displayOptions();
+               // Feed the input to the executeOption() function
+               executeOption(option, data, fn);
+            //Stop if they enter 'e' or 'E'
+          } while (option != 'e' && option != 'E');
+     } else {
+          std::cout << "Could not open file\n";
+     }
+     // Run all tests when the loop finishs! 
+     ::testing::InitGoogleTest(&argc, argv);
+     return RUN_ALL_TESTS();
+}
+```
+**At the bare minimum, you will need to have your readUsers(), printUsers(), displayOptions() and executeOption() functions defined to get the main to run. They do not need to do anything (ie. they can have a dummy cout or dummy return statement) but they do need to be defined.**
 
-string generatePassword();
+## Running your code
+As you read above, you will need to send your code a file name as a command line argument, therefore running your code will require something extra. 
 
-string generateEmail(string name);
+To compile your code: 
+```
+Windows WSL and Linux: 
+g++ main.cpp -lgtest -lpthread -o login
 
-int checkEmpty(const string data[ROWS][COLS]);
+Mac:
+g++ -std=c++2a main.cpp -lgtest -lpthread -o login
+```
 
-void addUser(int, string, string, string data[ROWS][COLS], string);
+To run your code: 
+```
+All platforms: 
+./login ./data/user_info.csv
+```
+If you forget the `./data/user_info.csv` then you will get the following usage statement. That is just a friendly reminder to give your code a file.  
+```
+Usage: ./login data/name_of_csvfile.csv
+```
 
 
 ## Grading
