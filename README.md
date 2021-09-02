@@ -143,18 +143,11 @@ https://github.com/coleca24/csce240_f21_p1/blob/main/OutputExamples.md
 The `main()` function looks like this, I have added comments below to describe each action it takes. 
 ```
 int main(int argc, char** argv) {
-     // This looks to make sure that you gave your executable a file, 
-     // if not, then you will get the error message. 
-     if (argc != 2) {
-          std::cout << "Usage: ./login data/name_of_csvfile.csv\n";
-          exit(1);
-     }
      // Setting up and initializing the values of data to all "NULL"
      std::string data[ROWS][COLS];
      init(data);
-     // Getting the file name that was passed in with the executable 
-     // (syntax described in "Running your code" section below)
-     std::string fn = argv[1];
+     // Setting the file name 
+     std::string fn = "./data/user_info.csv";
      // Call to your readUsers() function 
      bool success = readUsers(fn, data);
      // Call to your printUsers() function - gives you a chance to debug your readUsers() function. 
@@ -181,7 +174,6 @@ int main(int argc, char** argv) {
 **At the bare minimum, you will need to have your readUsers(), printUsers(), displayOptions() and executeOption() functions defined to get the main to run. They do not need to do anything (ie. they can have a dummy cout or dummy return statement) but they do need to be defined.**
 
 ## Running your code
-As you read above, you will need to send your code a file name as a command line argument, therefore running your code will require something extra. 
 
 To compile your code: 
 ```
@@ -195,13 +187,8 @@ g++ -std=c++2a main.cpp -lgtest -lpthread -o login
 To run your code: 
 ```
 All platforms: 
-./login ./data/user_info.csv
+./login 
 ```
-If you forget the `./data/user_info.csv` then you will get the following usage statement. That is just a friendly reminder to give your code a file.  
-```
-Usage: ./login data/name_of_csvfile.csv
-```
-
 
 ## Grading
 ### Commit #1 Due 9/9/21 at Midnight (5 pts)
