@@ -171,7 +171,7 @@ int main(int argc, char** argv) {
      return RUN_ALL_TESTS();
 }
 ```
-**At the bare minimum, you will need to have your readUsers(), printUsers(), displayOptions() and executeOption() functions defined to get the main to run. They do not need to do anything (ie. they can have a dummy cout or dummy return statement) but they do need to be defined.**
+**At the bare minimum, you will need to have all functions defined to get the main to run. They do not need to do anything (ie. they can have a dummy cout or dummy return statement) but they do need to be defined.**
 
 ## Running your code
 
