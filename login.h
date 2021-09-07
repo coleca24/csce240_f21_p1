@@ -53,7 +53,7 @@ int searchForUser(string name, const string data[ROWS][COLS]) {
 }
 
 int findAllUsers(string title, const string data[ROWS][COLS]) {
-  return;
+  return -1;
 }
 bool deleteUser(string name, string data[ROWS][COLS], string fh) {
   return false;
