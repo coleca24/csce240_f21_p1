@@ -27,14 +27,14 @@ Tests that your `searchForUser()` function returns -1 when a name that does not 
 ## Tests for Commit #2 Due 9/20/21 at Midnight (15 pts)
 For commit #2 you need to be passing all of the tests in the commit1 test module (11 in total)
 
-Commit2.findAllUsersCorrectExists - 1 pt
-Commit2.findAllUsersCorrectNotExist - 1 pt
-Commit2.deleteUserReturnCorrectReturn - 0.5 pt
-Commit2.deleteUserArrayCorrect - 1.5 pts
-Commit2.deleteUserFileCorrect - 2 pts
-Commit2.generatePasswordCorrect - 1 pt
-Commit2.generateEmailCorrect - 1 pt
-Commit2.checkEmptyCorrectIndexFound - 0.5 pt
-Commit2.checkEmptyCorrectIndexNotFound - 0.5 pt
-Commit2.addUserReturnArrayCorrect - 2 pts
-Commit2.addUserFileCorrect - 2 pts
+### Commit2.findAllUsersCorrectExists - 1 pt
+### Commit2.findAllUsersCorrectNotExist - 1 pt
+### Commit2.deleteUserReturnCorrectReturn - 0.5 pt
+### Commit2.deleteUserArrayCorrect - 1.5 pts
+### Commit2.deleteUserFileCorrect - 2 pts
+### Commit2.generatePasswordCorrect - 1 pt
+### Commit2.generateEmailCorrect - 1 pt
+### Commit2.checkEmptyCorrectIndexFound - 0.5 pt
+### Commit2.checkEmptyCorrectIndexNotFound - 0.5 pt
+### Commit2.addUserReturnArrayCorrect - 2 pts
+### Commit2.addUserFileCorrect - 2 pts
