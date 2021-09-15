@@ -21,7 +21,7 @@ void printUsers(const string data[ROWS][COLS]);
 bool readUsers(string fh, string data[ROWS][COLS]);
 char displayOptions();
 bool validateOption(char option);
-void executeOption(char option, const string data[ROWS][COLS], string);
+void executeOption(char option, string data[ROWS][COLS], string);
 int searchForUser(string name, const string data[ROWS][COLS]);
 
 // TODO(commit 2): Commit #2 functions
@@ -45,7 +45,7 @@ char displayOptions() {
 bool validateOption(char option) {
   return false;
 }
-void executeOption(char option, const string data[ROWS][COLS], string) {
+void executeOption(char option, string data[ROWS][COLS], string) {
   return;
 }
 int searchForUser(string name, const string data[ROWS][COLS]) {
