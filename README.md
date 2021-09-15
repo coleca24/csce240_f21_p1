@@ -57,7 +57,7 @@ These are in order of how I would suggest to complete them. These 6 will be the 
 - `char displayOptions();`
   -  This function will display the command line options that the user can input into your system. 
   -  It should include a call to `cin` to get the choice from the user and return this choice if it is a valid option (Hint: you will use the `validateOption(char)` to check).
-- `void executeOption(char option, const string data[ROWS][COLS], string fn);`
+- `void executeOption(char option, string data[ROWS][COLS], string fn);`
   - Based on the `option` that is sent in, the correct function should be called. Note that for this first commit, you will not have all of the functions implemented, so it is fine for you to just put a cout statement for that option as a placeholder for now. 
   - Options: 
     - E/e Ends the program - you will actually not have to do anything for this option in this function (note the flow in the main function in main.cpp)
